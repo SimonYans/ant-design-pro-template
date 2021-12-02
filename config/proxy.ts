@@ -9,26 +9,27 @@
 export default {
   dev: {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
-    '/api/': {
+    '/proxyApi/': {
       // 要代理的地址
-      target: 'https://preview.pro.ant.design',
+      target: 'https://lubantest.inceptio.cn',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
+      pathRewrite: { '^/proxyApi': '' },
     },
   },
   test: {
-    '/api/': {
-      target: 'https://proapi.azurewebsites.net',
+    '/proxyApi/': {
+      target: 'https://lubantest.inceptio.cn',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '^/proxyApi': '' },
     },
   },
   pre: {
-    '/api/': {
-      target: 'your pre url',
+    '/proxyApi/': {
+      target: 'https://luban.inceptio.cn',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '^/proxyApi': '' },
     },
   },
 };

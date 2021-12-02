@@ -1,13 +1,15 @@
 import { PageLoading } from '@ant-design/pro-layout';
-import type { RunTimeLayoutConfig } from 'umi';
+import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
+import { RequestOptionsInit } from 'umi-request';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
+import { currentUser as queryCurrentUser } from './services/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import SwitchTabsLayout from './layouts/SwitchTabsLayout';
 import type { Settings } from '../config/defaultSettings';
 import defaultSettings from '../config/defaultSettings';
+// import Cookies from 'js-cookie';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -21,6 +23,7 @@ export const initialStateConfig = {
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
 export async function getInitialState(): Promise<{
+  token?: string;
   settings?: Partial<Settings>;
   currentUser?: API.CurrentUser;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
@@ -37,10 +40,6 @@ export async function getInitialState(): Promise<{
   if (process.env.NODE_ENV === 'production') {
     return {
       fetchUserInfo,
-      currentUser: {
-        name: 'Yuns',
-        avatar: 'https://avatars.githubusercontent.com/u/18096089',
-      },
       settings: defaultSettings,
     };
   }
@@ -59,6 +58,26 @@ export async function getInitialState(): Promise<{
   };
 }
 
+const requestInterceptors = (url: string) => {
+  const options: RequestOptionsInit = {
+    timeout: 30000,
+  };
+  // const token = Cookies.get('token');
+  return {
+    url: `${url}`,
+    options: { ...options, interceptors: true },
+  };
+};
+
+const responseInterceptors = (response: Response) => {
+  return response;
+};
+
+export const request: RequestConfig = {
+  requestInterceptors: [requestInterceptors],
+  responseInterceptors: [responseInterceptors],
+};
+
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   const { switchTabs, ...restSettings } = initialState?.settings || {};
@@ -68,7 +87,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     ),
     disableContentMargin: false,
     waterMarkProps: {
-      content: initialState?.currentUser?.name,
+      content: initialState?.currentUser?.username,
     },
     className: switchTabs?.mode && 'custom-by-switch-tabs',
     childrenRender: (children, props) => {

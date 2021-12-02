@@ -67,9 +67,8 @@ export default defineConfig({
     },
   ],
   nodeModulesTransform: { type: 'none' },
-  mfsu: {},
   webpack5: {},
   exportStatic: {},
-  base: '/ant-design-pro-plus/',
-  publicPath: '/ant-design-pro-plus/',
+  publicPath: '/',
+  outputPath: 'luban',
 });
