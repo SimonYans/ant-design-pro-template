@@ -5,7 +5,7 @@ import { ProFormCheckbox, ProFormText, LoginForm } from '@ant-design/pro-form';
 import { useIntl, history, FormattedMessage, SelectLang, useModel } from 'umi';
 import Footer from '@/components/Footer';
 import { login } from '@/services/login';
-import Cookies from 'js-cookie';
+import { setToken } from '@/utils/cookie';
 
 import styles from './index.less';
 
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
       const res = await login({ ...values });
       if (res.code === 0) {
         if (res.data) {
-          Cookies.set('token', res.data);
+          setToken(res.data);
         }
         await setInitialState((s) => ({
           ...s,

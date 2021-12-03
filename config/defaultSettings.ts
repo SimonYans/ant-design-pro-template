@@ -24,7 +24,7 @@ const Settings: Settings = {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: '嬴彻运力供应商系统',
+  title: '鲁班授权系统',
   pwa: false,
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   iconfontUrl: '',

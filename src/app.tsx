@@ -1,6 +1,5 @@
 import { PageLoading } from '@ant-design/pro-layout';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
-import { RequestOptionsInit } from 'umi-request';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
@@ -9,7 +8,8 @@ import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import SwitchTabsLayout from './layouts/SwitchTabsLayout';
 import type { Settings } from '../config/defaultSettings';
 import defaultSettings from '../config/defaultSettings';
-// import Cookies from 'js-cookie';
+import { getToken } from '@/utils/cookie';
+import { RequestOptionsInit } from 'umi-request';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -58,24 +58,24 @@ export async function getInitialState(): Promise<{
   };
 }
 
-const requestInterceptors = (url: string) => {
-  const options: RequestOptionsInit = {
-    timeout: 30000,
-  };
-  // const token = Cookies.get('token');
+const authHeaderInterceptor = (url: string, options: RequestOptionsInit) => {
+  let authHeader = {};
+  if (getToken()) {
+    authHeader = { token: getToken() };
+  }
   return {
-    url: `${url}`,
-    options: { ...options, interceptors: true },
+    url: url,
+    options: { ...options, interceptors: true, headers: authHeader },
   };
-};
-
-const responseInterceptors = (response: Response) => {
-  return response;
 };
 
 export const request: RequestConfig = {
-  requestInterceptors: [requestInterceptors],
-  responseInterceptors: [responseInterceptors],
+  timeout: 30000,
+  credentials: 'include',
+  errorConfig: {},
+  middlewares: [],
+  requestInterceptors: [authHeaderInterceptor],
+  responseInterceptors: [],
 };
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
