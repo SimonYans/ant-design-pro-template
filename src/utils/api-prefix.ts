@@ -16,3 +16,11 @@ export const lubanApi: ApiFunc = function (uri) {
   }
   return proxy + prefix;
 };
+
+export const authApi: ApiFunc = function (uri) {
+  const prefix: string = '/auth';
+  if (uri) {
+    return proxy + prefix + uri;
+  }
+  return proxy + prefix;
+};

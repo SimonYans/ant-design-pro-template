@@ -107,8 +107,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
-        history.push(loginPath);
+      if (!initialState?.token && location.pathname !== loginPath) {
+        window.location.href = loginPath;
       }
     },
     links: isDev

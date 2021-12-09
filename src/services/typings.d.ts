@@ -10,6 +10,7 @@ declare namespace API {
     email?: string;
     createdTime?: string;
     phone?: string;
+    access?: string;
   };
 
   type LoginResult = {
@@ -48,6 +49,12 @@ declare namespace API {
   type FakeCaptcha = {
     code?: number;
     status?: string;
+  };
+
+  type GetTokenByCode = {
+    code?: number;
+    data?: string;
+    msg?: string;
   };
 
   type LoginParams = {

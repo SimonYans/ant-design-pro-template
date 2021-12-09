@@ -1,4 +1,4 @@
-import { lubanApi } from '@/utils/api-prefix';
+import { authApi, lubanApi } from '@/utils/api-prefix';
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
@@ -26,6 +26,17 @@ export async function login(
 /** 获取用户信息 GET /user/info */
 export async function getUserInfo(params: {}, options?: { [key: string]: any }) {
   return request<API.FakeCaptcha>(lubanApi('/user/info'), {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 通过code获取token GET /token/cas/oauthToken */
+export async function getTokenByCode(params: {}, options?: { [key: string]: any }) {
+  return request<API.GetTokenByCode>(authApi('/token/cas/oauthToken'), {
     method: 'GET',
     params: {
       ...params,

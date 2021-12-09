@@ -11,7 +11,7 @@ export default {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
     '/proxyApi/': {
       // 要代理的地址
-      target: 'https://lubantest.inceptio.cn',
+      target: 'https://iopdev.inceptio.tech',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
@@ -20,14 +20,14 @@ export default {
   },
   test: {
     '/proxyApi/': {
-      target: 'https://lubantest.inceptio.cn',
+      target: 'https://ioptest.inceptio.tech',
       changeOrigin: true,
       pathRewrite: { '^/proxyApi': '' },
     },
   },
   pre: {
     '/proxyApi/': {
-      target: 'https://luban.inceptio.cn',
+      target: 'https://ioptest.inceptio.tech',
       changeOrigin: true,
       pathRewrite: { '^/proxyApi': '' },
     },

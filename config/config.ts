@@ -70,5 +70,5 @@ export default defineConfig({
   webpack5: {},
   exportStatic: {},
   publicPath: '/',
-  outputPath: 'luban',
+  outputPath: 'dist',
 });
