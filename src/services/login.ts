@@ -1,35 +1,35 @@
-import { authApi, lubanApi } from '@/utils/api-prefix';
+import { authApi } from '@/utils/api-prefix';
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
 
-/** 登录 POST /user/login/in */
-export async function login(
-  data: {
-    // query
-    /** 用户名 */
-    username: string;
-    /** 密码 */
-    password: string;
-  },
-  options?: { [key: string]: any },
-) {
-  return request<API.LoginResult>(lubanApi('/user/login/in'), {
+/** 登录接口 POST /user/login */
+export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
+  return request<API.LoginResult>('/api/user/login', {
     method: 'POST',
-    data: {
-      ...data,
+    requestType: 'form',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
+    data: body,
     ...(options || {}),
   });
 }
 
-/** 获取用户信息 GET /user/info */
-export async function getUserInfo(params: {}, options?: { [key: string]: any }) {
-  return request<API.FakeCaptcha>(lubanApi('/user/info'), {
-    method: 'GET',
-    params: {
-      ...params,
-    },
+/** 获取账户信息 POST /user/queryUserInfo */
+export async function queryUserInfo(options?: { [key: string]: any }) {
+  return request<{
+    result: API.UserInfo;
+  }>('/api/user/queryUserInfo', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
+/** 退出登录接口 POST /api/user/invalid  */
+export async function outLogin(options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/api/user/invalid', {
+    method: 'POST',
     ...(options || {}),
   });
 }

@@ -1,21 +1,20 @@
-import { lubanApi } from '@/utils/api-prefix';
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
 
-/** 获取当前的用户 GET /user/info */
+/** 获取当前的用户 GET /user/getUserInfo */
 export async function currentUser(options?: { [key: string]: any }) {
   return request<{
-    data: API.CurrentUser;
-  }>(lubanApi('/user/info'), {
-    method: 'POST',
+    result: API.UserInfo;
+  }>('/api/user/getUserInfo', {
+    method: 'GET',
     ...(options || {}),
   });
 }
 
-/** 退出登录接口 POST /api/login/outLogin */
-export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/login/outLogin', {
+/** 获取账户信息 POST /ssomenu/loadUserMenu */
+export async function loadUserMenu(options?: { [key: string]: any }) {
+  return request('/api/ssomenu/loadUserMenu', {
     method: 'POST',
     ...(options || {}),
   });
@@ -40,7 +39,7 @@ export async function rule(
   },
   options?: { [key: string]: any },
 ) {
-  return request<API.RuleList>('/api/rule', {
+  return request<API.RuleList>('/api/vehicle/listPage', {
     method: 'GET',
     params: {
       ...params,

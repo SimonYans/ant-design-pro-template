@@ -2,6 +2,12 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
+  define: {
+    'process.env': {
+      NODE_ENV: 'develop',
+      IMAGE_URL: 'https://yunlidev.inceptio.cn',
+    },
+  },
   plugins: [
     // https://github.com/zthxxx/react-dev-inspector
     'react-dev-inspector/plugins/umi/react-inspector',

@@ -2,21 +2,34 @@
 /* eslint-disable */
 
 declare namespace API {
-  type CurrentUser = {
-    username?: string;
-    password?: string;
+  type CurrentRoleItem = {
     id?: string;
-    userId?: string;
-    email?: string;
-    createdTime?: string;
+    active?: string;
+    name?: string;
+  };
+
+  type CurrentUser = {
+    id?: string;
+    account?: string;
     phone?: string;
+    name?: string;
+    companyName?: string;
+    companyShortName?: string;
+    lastLoginTime?: string;
     access?: string;
   };
 
+  type UserInfo = {
+    roles: CurrentRoleItem[];
+    user: CurrentUser;
+    info?: object;
+  };
+
   type LoginResult = {
-    code?: number;
-    data?: string;
-    msg?: string;
+    errorCode?: string;
+    message?: string;
+    result?: string;
+    success?: boolean;
   };
 
   type PageParams = {
@@ -58,8 +71,10 @@ declare namespace API {
   };
 
   type LoginParams = {
-    username: string;
-    password: string;
+    phone?: string;
+    pwd?: string;
+    vercode?: boolean;
+    key?: string;
   };
 
   type ErrorResponse = {

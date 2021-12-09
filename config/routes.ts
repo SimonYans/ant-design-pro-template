@@ -25,6 +25,91 @@
     component: './Welcome',
   },
   {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/jfcompanysupplier_edit',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/vehicle_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/driver_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/driver_vehicle',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/waybill_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/receipt_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/maincontract_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/assistantcontract_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/linesupplierpayable_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/waybill_confirm_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/capacity_confirm_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/payablebill_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/ssouser_list',
+    component: './TableList',
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/ssorole_list',
+    component: './TableList',
+  },
+
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
@@ -42,71 +127,7 @@
       },
     ],
   },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
-  },
-  {
-    name: 'switch-tabs-demos',
-    icon: 'star',
-    path: '/switch-tabs-demos',
-    routes: [
-      {
-        path: '/switch-tabs-demos',
-        redirect: '/switch-tabs-demos/control',
-      },
-      {
-        name: 'control',
-        path: '/switch-tabs-demos/control',
-        component: './switchTabsDemos/Control',
-      },
-      {
-        name: 'parent',
-        path: '/switch-tabs-demos/parent',
-        component: './switchTabsDemos/Parent',
-        hideChildrenInMenu: true,
-        routes: [
-          {
-            path: '/switch-tabs-demos/parent',
-            redirect: '/switch-tabs-demos/parent/child1',
-          },
-          {
-            path: '/switch-tabs-demos/parent/child1',
-            component: './switchTabsDemos/Parent/Child1',
-          },
-          {
-            path: '/switch-tabs-demos/parent/child2',
-            name: 'child2',
-            component: './switchTabsDemos/Parent/Child2',
-          },
-          {
-            path: '/switch-tabs-demos/parent/child3',
-            component: './switchTabsDemos/Parent/Child3',
-          },
-        ],
-      },
-      {
-        name: 'query',
-        path: '/switch-tabs-demos/query',
-        component: './switchTabsDemos/Query',
-      },
-      {
-        name: 'result',
-        path: '/switch-tabs-demos/result',
-        follow: '/switch-tabs-demos/query',
-        hideInMenu: true,
-        component: './switchTabsDemos/Result',
-      },
-      {
-        name: 'dynamic',
-        path: '/switch-tabs-demos/dynamic/:anyStr',
-        hideInMenu: true,
-        component: './switchTabsDemos/Dynamic',
-      },
-    ],
-  },
+
   {
     path: '/',
     redirect: '/welcome',
